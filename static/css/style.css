@@ -1,0 +1,21 @@
+/* .jumbotron{
+  background-image: url('https://1vgls911io20eqjpr4422qw1-wpengine.netdna-ssl.com/wp-content/uploads/2016/08/Kickstarter-Logo-.jpg');
+  background-size: cover;
+  margin-bottom:0;
+  color: white;
+} */
+/* {
+color: #FFFFFF;
+/*background-color:none !important;
+} */
+/* body{
+  background-image: url("crowdfunding-banner-2.jpg");
+  background-color: aqua;
+} */
+
+body {
+  background-image: url("Kickstarter-Logo-.jpg");
+  background-size: cover;
+  background-repeat: no-repeat, repeat;
+  
+}

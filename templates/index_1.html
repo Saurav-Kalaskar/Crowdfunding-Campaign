@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script>
+       
+function process(){
+
+  
+  feature = {
+    'goal': $('#goal').val(),
+    'staff_pick_True':  $('#staff_pick_True').val(),
+    'cam_length': $('#cam_length').val(),
+    'blurb_length':  $('#blurb_length').val(),
+    'country_US':  $('#country_US').val(),
+    'category_input':  $('#category_input').val()
+  }
+  console.log(feature)
+
+  $.post({
+    url: '/predict_api',
+    contentType: 'application/json',
+    data: JSON.stringify(feature),
+    success: result => metis_success(result),
+    error: result => metis_error(result)
+  })
+
+}
+
+function metis_success(result){
+
+console.log(result)
+var resultstring='This project will be a ';
+if (result==1)resultstring+='success!';
+else resultstring+='failure.';
+$('#results').html(resultstring);
+ 
+}
+
+function metis_error(result){
+  console.log(result);
+  alert("I don't know what you did");
+}
+</script>
+<body style= "background-color: #84B1EC;">
+    <div>
+        <img src="/static/images/crowdfunding-banner-2.jpg" alt="" width="100%" height="10%">
+    </div>
+    <div class="text-center">
+        
+    </div>
+    <div class="container"  style=" text-align: center;" >
+        <div class="row">
+            <div class="row ">
+                <img src="/static/images/dollar1.png" alt="">
+            </div>
+          <div class="col w-100">
+
+            <h1>Please put in the details of your campaign </h1>
+    
+    <br> 
+    What is your campaign goal in USD?<br>
+          <input id="goal" name="goal" type="text"/><br><br>
+    What is your campaign length in days?<br>
+                <input id="cam_length" name="cam_length" type="text"/><br><br>
+    Enter the Number of Investors<br>
+        <input id="blurb_length" name="blurb_length" type="text"/><br><br>
+    Do you wish to market your campaign?<br>
+        <select id="staff_pick_True" name="staff_pick_True"><br><br>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select><br><br>
+    Is this campaign based in the US?<br>
+      <select id="country_US" name="country_US"><br><br>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select><br><br>
+    
+    Pick your category:<br>
+    
+        <select id="category_input" name="category_input"><br>
+          <option value="main_category_comics">Comics</option>
+          <option value="main_category_crafts">Crafts</option>
+          <option value="main_category_dance">Dance</option>
+          <option value="main_category_design">Design</option>
+          <option value="main_category_fashion">Fashion</option>
+          <option value="main_category_film & video">Film & Video</option>
+          <option value="main_category_food">Food</option>
+          <option value="main_category_games">Games</option>
+          <option value="main_category_journalism">Journalism</option>
+          <option value="main_category_music">Music</option>
+          <option value="main_category_photography">Photography</option>
+          <option value="main_category_publishing">Publishing</option>
+          <option value="main_category_technology">Technology</option>
+          <option value="main_category_theater">Theater</option>
+          <option value="main_category_art">Art</option>
+        </select><br>
+        <br><br>
+        <img src="/static/images/button_submit.png" type="submit" value="Submit" method="get" onclick= "process()" >
+      <div id='results'>
+      </div>
+    
+    <br><br><br>
+    </div>
+        </div>
+</body>
+</html>
